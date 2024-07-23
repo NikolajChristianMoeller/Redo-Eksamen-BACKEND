@@ -23,19 +23,4 @@ public class ResultController {
     public ResponseEntity<ResultDTO> getResult(@PathVariable Long id) {
         return ResponseEntity.ok(resultService.getResult(id));
     }
-
-    @PostMapping
-    public ResponseEntity<ResultDTO> createResult(@RequestBody ResultDTO resultDTO) {
-        return ResponseEntity.ok(resultService.createResult(resultDTO));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<ResultDTO> updateResult(@PathVariable Long id, @RequestBody ResultDTO resultDTO) {
-        return ResponseEntity.ok(resultService.updateResult(id, resultDTO));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ResultDTO> deleteResult(@PathVariable Long id) {
-        return ResponseEntity.ok(resultService.deleteResult(id));
-    }
 }

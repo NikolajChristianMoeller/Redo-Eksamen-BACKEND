@@ -3,52 +3,36 @@ package org.example.redoeksamenbackend.result;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ResultService {
-    private final ResultRepository resultRepository;
+    ResultRepository resultRepository;
 
     public ResultService(ResultRepository resultRepository) {
         this.resultRepository = resultRepository;
     }
 
     public List<ResultDTO> getResults() {
-        return resultRepository.findAll().stream().map(this::toDTO).toList();
+        return resultRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
     }
 
     private ResultDTO toDTO(Result result) {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setId(result.getId());
-        resultDTO.setResultType(result.getResultType());
         resultDTO.setDate(result.getDate());
+        resultDTO.setResultValue(result.getResultValue());
+        // Check if Discipline is null before accessing it
+        if (result.getDiscipline() != null) {
+            resultDTO.setResultType(result.getDiscipline().getResultType());
+        } else {
+            // Handle the case where Discipline is null
+            resultDTO.setResultType("No Discipline"); // Or set to null, or any other placeholder value that makes sense for your application
+        }
         return resultDTO;
     }
 
     public ResultDTO getResult(Long id) {
         return resultRepository.findById(id).map(this::toDTO).orElse(null);
-    }
-
-    public ResultDTO createResult(ResultDTO resultDTO) {
-        Result result = new Result();
-        result.setResultType(resultDTO.getResultType());
-        result.setDate(resultDTO.getDate());
-        result.setResultValue(resultDTO.getResultValue());
-        return toDTO(resultRepository.save(result));
-    }
-
-    public ResultDTO updateResult(Long id, ResultDTO resultDTO) {
-        return resultRepository.findById(id).map(result -> {
-            result.setResultType(resultDTO.getResultType());
-            result.setDate(resultDTO.getDate());
-            result.setResultValue(resultDTO.getResultValue());
-            return toDTO(resultRepository.save(result));
-        }).orElse(null);
-    }
-
-    public ResultDTO deleteResult(Long id) {
-        return resultRepository.findById(id).map(result -> {
-            resultRepository.delete(result);
-            return toDTO(result);
-        }).orElse(null);
     }
 }

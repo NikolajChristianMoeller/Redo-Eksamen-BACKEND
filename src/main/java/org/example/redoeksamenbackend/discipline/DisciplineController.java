@@ -24,19 +24,4 @@ public class DisciplineController {
     public ResponseEntity<DisciplineDTO> getDiscipline(@PathVariable Long id) {
         return ResponseEntity.ok(disciplineService.getDiscipline(id));
     }
-
-    @PostMapping
-    public ResponseEntity<DisciplineDTO> createDiscipline(@RequestBody DisciplineDTO disciplineDTO) {
-        return ResponseEntity.ok(disciplineService.createDiscipline(disciplineDTO));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<DisciplineDTO> updateDiscipline(@PathVariable Long id, @RequestBody DisciplineDTO disciplineDTO) {
-        return ResponseEntity.ok(disciplineService.updateDiscipline(id, disciplineDTO));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<DisciplineDTO> deleteDiscipline(@PathVariable Long id) {
-        return ResponseEntity.ok(disciplineService.deleteDiscipline(id));
-    }
 }

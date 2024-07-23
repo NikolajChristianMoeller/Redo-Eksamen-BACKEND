@@ -15,12 +15,12 @@ values
     ('Mogens', 'Male', 19, 'CPH Swimmers'),
     ('Ulla', 'Male', 61, 'Aarhus Shooters');
 
-insert into result (date, result_value)
+insert into result (date, result_value, discipline_id, participant_id)
 values
-    ('2021-06-01', 7.5),
-    ('2021-06-01', 8.5),
-    ('2021-06-01', 9.5),
-    ('2021-06-01', 10.5);
+    ('2021-06-01', 7.5, 1, 1),
+    ('2021-06-01', 8.5, 2, 2),
+    ('2021-06-01', 9.5, 3, 3),
+    ('2021-06-01', 10.5, 4, 4);
 
 insert into participant_disciplines (participant_id, disciplines_id)
 values

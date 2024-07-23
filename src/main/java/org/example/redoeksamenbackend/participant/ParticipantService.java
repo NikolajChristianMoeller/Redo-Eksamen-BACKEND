@@ -6,7 +6,7 @@ import java.util.List;
 
 @Service
 public class ParticipantService {
-    private final ParticipantRepository participantRepository;
+   ParticipantRepository participantRepository;
 
     public ParticipantService(ParticipantRepository participantRepository) {
         this.participantRepository = participantRepository;

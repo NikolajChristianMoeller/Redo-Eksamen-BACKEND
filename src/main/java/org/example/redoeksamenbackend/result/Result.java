@@ -21,10 +21,9 @@ public class Result {
     private LocalDate date;
     private Double resultValue;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Participant participant;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Discipline discipline;
-
 }
